@@ -58,7 +58,7 @@ resource "qovery_application" "tweet_app" {
   environment_id = qovery_environment.production.id
   name           = "tweet_app"
   cpu            = 1000
-  memory         = 512
+  memory         = 256
   state          = "RUNNING"
   git_repository = {
     url       = "https://github.com/AndreiDarapeiRnD/linux_tweet_app"
