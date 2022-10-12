@@ -80,6 +80,5 @@ resource "qovery_application" "tweet_app" {
 
   depends_on = [
     qovery_environment.production,
-    qovery_database.my_psql_database,
   ]
 }
