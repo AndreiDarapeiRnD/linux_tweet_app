@@ -1,0 +1,46 @@
+name: Terraform
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+    - 'terraform/**'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+    - 'terraform/**'
+
+env:
+  QOVERY_ORGANIZATION_ID: cd74eac3-ac4c-4080-a04d-a5dc7818d2f5
+
+jobs:
+
+  Apply:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform -chdir=terraform init -input=false
+      
+    - name: Terraform Plan
+      run: terraform -chdir=terraform plan -input=false
+      env:
+        TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        TF_VAR_qovery_organization_id: ${{ env.QOVERY_ORGANIZATION_ID }}
+        TF_VAR_qovery_access_token: ${{ secrets.QOVERY_ACCESS_TOKEN }}
+
+    - name: Terraform Apply
+      run: terraform -chdir=terraform apply -auto-approve -input=false
+      env:
+        TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        TF_VAR_qovery_organization_id: ${{ env.QOVERY_ORGANIZATION_ID }}
+        TF_VAR_qovery_access_token: ${{ secrets.QOVERY_ACCESS_TOKEN }}
