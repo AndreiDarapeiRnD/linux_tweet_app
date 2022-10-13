@@ -12,7 +12,7 @@ provider "qovery" {
 
 resource "qovery_aws_credentials" "aws_creds" {
   organization_id   = var.qovery_organization_id
-  name              = "AWS Creds"
+  name              = "AWS Creds1"
   access_key_id     = var.aws_access_key_id
   secret_access_key = var.aws_secret_access_key
 }
@@ -36,7 +36,7 @@ resource "qovery_cluster" "tweet_cluster" {
 
 resource "qovery_project" "tweet_project" {
   organization_id = var.qovery_organization_id
-  name            = "Strapi V4"
+  name            = "Tweet App"
 
   depends_on = [
     qovery_cluster.tweet_cluster
