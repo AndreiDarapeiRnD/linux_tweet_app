@@ -61,7 +61,7 @@ resource "qovery_application" "tweet_app" {
   memory         = 256
   state          = "RUNNING"
   git_repository = {
-    url       = "https://github.com/AndreiDarapeiRnD/linux_tweet_app"
+    url       = "https://github.com/AndreiDarapeiRnD/linux_tweet_app.git"
     branch    = "master"
     root_path = "/"
   }
