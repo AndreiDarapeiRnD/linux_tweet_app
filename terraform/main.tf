@@ -12,7 +12,7 @@ provider "qovery" {
 
 resource "qovery_aws_credentials" "aws_creds" {
   organization_id   = var.qovery_organization_id
-  name              = "AWS Creds1"
+  name              = "AWS Creds2"
   access_key_id     = var.aws_access_key_id
   secret_access_key = var.aws_secret_access_key
 }
